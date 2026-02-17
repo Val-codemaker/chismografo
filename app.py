@@ -111,6 +111,15 @@ TALKS = [
         "time_start": "19:30",
         "time_end": "20:00"
     }
+    {
+        "id": 111,
+        "title": "Github actualizado",
+        "speaker_ids": [1],
+        "categories": ["Updates", "Tools"],
+        "description": "Una charla sobre las últimas novedades de Github.",
+        "time_start": "20:00",
+        "time_end": "20:30"
+    },
 ]
 
 def get_speaker_by_id(speaker_id):
