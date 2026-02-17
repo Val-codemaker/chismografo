@@ -110,7 +110,7 @@ TALKS = [
         "description": "Wrap up of the day and networking session details.",
         "time_start": "19:30",
         "time_end": "20:00"
-    }
+    },
     {
         "id": 111,
         "title": "Github actualizado",
