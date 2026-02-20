@@ -1,0 +1,121 @@
+/* La CQ Theme - Chismografo */
+@import url('https://fonts.googleapis.com/css2?family=Bangers&family=Comic+Neue:wght@400;700&display=swap');
+
+body {
+    background-color: #00FFFF; /* Cyan Background */
+    background-image: linear-gradient(45deg, #00FFFF 25%, #FF00FF 25%, #FF00FF 50%, #00FFFF 50%, #00FFFF 75%, #FF00FF 75%, #FF00FF 100%);
+    background-size: 40px 40px; /* Checkerboard effect */
+    font-family: 'Comic Neue', cursive;
+    color: #333;
+}
+
+.container {
+    max-width: 800px;
+    margin: 30px auto;
+    background: #ffffff;
+    border: 5px solid #000;
+    border-radius: 15px;
+    box-shadow: 10px 10px 0px #000;
+    padding: 20px;
+}
+
+h1, h2, h3 {
+    font-family: 'Bangers', cursive;
+    color: #FF00FF; /* Hot Pink Headers */
+    text-shadow: 2px 2px 0px #000;
+    letter-spacing: 2px;
+    transform: rotate(-2deg);
+}
+
+.navbar {
+    background: #FFFF00; /* Yellow Navbar */
+    border-bottom: 5px solid #000;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar a {
+    color: #000;
+    font-weight: bold;
+    text-decoration: none;
+    font-size: 1.2rem;
+    padding: 5px 10px;
+    background: #00FF00; /* Lime Green Links */
+    border: 2px solid #000;
+    box-shadow: 3px 3px 0px #000;
+    margin-left: 10px;
+}
+
+.navbar a:hover {
+    top: 2px;
+    left: 2px;
+    box-shadow: 1px 1px 0px #000;
+}
+
+.chisme-card {
+    background: #FFF;
+    border: 3px solid #000;
+    margin-bottom: 20px;
+    padding: 15px;
+    position: relative;
+    box-shadow: 5px 5px 0px #333;
+}
+
+.chisme-card:nth-child(odd) {
+    transform: rotate(1deg);
+}
+
+.chisme-card:nth-child(even) {
+    transform: rotate(-1deg);
+}
+
+.chisme-meta {
+    font-size: 0.9rem;
+    color: #666;
+    border-bottom: 2px dashed #ccc;
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+}
+
+.btn-primary {
+    background: #FF00FF;
+    color: #FFF;
+    font-family: 'Bangers', cursive;
+    font-size: 1.5rem;
+    border: 3px solid #000;
+    box-shadow: 5px 5px 0px #000;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: all 0.1s;
+}
+
+.btn-primary:active {
+    transform: translate(3px, 3px);
+    box-shadow: 2px 2px 0px #000;
+}
+
+input, textarea {
+    width: 100%;
+    border: 3px solid #000;
+    border-radius: 5px;
+    padding: 10px;
+    font-family: 'Comic Neue', cursive;
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+    background: #f0f0f0;
+}
+
+.flash-messages {
+    list-style: none;
+    padding: 0;
+}
+
+.flash-message {
+    background: #FFFF00;
+    border: 3px solid #000;
+    padding: 10px;
+    margin-bottom: 10px;
+    font-weight: bold;
+}

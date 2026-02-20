@@ -1,92 +1,30 @@
 {% extends "base.html" %}
 
 {% block content %}
-
-<section class="hero">
-    <h1>Future of <span class="gradient-text">Cloud</span></h1>
-    <div class="event-meta">
-        <div class="meta-item">
-            <span class="icon">📅</span>
-            <span>{{ date }}</span>
+<div class="post-section">
+    <form method="POST" action="{{ url_for('post_message') }}" class="post-form">
+        <textarea name="content" rows="3" placeholder="¿Qué está pasando?" required></textarea>
+        <div class="post-form-footer">
+            <button type="submit" class="btn-post">Publicar</button>
         </div>
-        <div class="meta-item">
-            <span class="icon">📍</span>
-            <span>{{ location }}</span>
-        </div>
-    </div>
-</section>
-
-<section class="search-section">
-    <form action="/search" method="get" class="search-bar">
-        <input type="text" name="q" placeholder="Search talks, speakers, or topics..."
-            value="{{ search_query if search_query else '' }}">
-        <button type="submit">Search</button>
     </form>
-    {% if search_query %}
-    <div class="search-results-info">
-        <p>Showing results for: <strong>"{{ search_query }}"</strong> <a href="/" class="clear-search">Clear</a></p>
-    </div>
-    {% endif %}
+</div>
 
-    <div class="categories-cloud">
-        <span>Popular Topics:</span>
-        {% for cat in all_categories[:5] %}
-        <a href="/search?q={{ cat }}" class="tag">{{ cat }}</a>
-        {% endfor %}
-    </div>
-</section>
-
-<section class="schedule-section">
-    <h2>Conference Schedule</h2>
-    <div class="timeline">
-        {% for talk in schedule %}
-        {# Lunch Break Logic: Insert before the talk starting at 13:30 #}
-        {% if talk.time_start == "13:30" %}
-        <div class="timeline-item lunch-break">
-            <div class="time-col">12:30 - 13:30</div>
-            <div class="content-col">
-                <div class="card lunch-card">
-                    <h3>🍽️ Lunch Break</h3>
-                    <p>Enjoy a gourmet networking lunch.</p>
-                </div>
-            </div>
+<div class="feed">
+    {% for message in messages %}
+    <div class="chisme-card">
+        <div class="chisme-meta">
+            <span class="username">@{{ message.author.username }}</span>
+            <span class="timestamp">· {{ message.timestamp.strftime('%H:%M') }}</span>
         </div>
-        {% endif %}
-
-        <div class="timeline-item">
-            <div class="time-col">
-                <span class="start-time">{{ talk.time_start }}</span>
-                <span class="end-time">{{ talk.time_end }}</span>
-            </div>
-            <div class="content-col">
-                <div class="card talk-card">
-                    <div class="card-header">
-                        <span class="talk-id">#{{ talk.id }}</span>
-                        <div class="tags">
-                            {% for cat in talk.categories %}
-                            <span class="tag">{{ cat }}</span>
-                            {% endfor %}
-                        </div>
-                    </div>
-                    <h3 class="talk-title">{{ talk.title }}</h3>
-                    <p class="talk-desc">{{ talk.description }}</p>
-                    <div class="speakers-list">
-                        {% for speaker in talk.speakers_obj %}
-                        <a href="{{ speaker.linkedin }}" target="_blank" class="speaker">
-                            <div class="avatar">{{ speaker.first_name[0] }}{{ speaker.last_name[0] }}</div>
-                            <span class="name">{{ speaker.first_name }} {{ speaker.last_name }}</span>
-                        </a>
-                        {% endfor %}
-                    </div>
-                </div>
-            </div>
+        <div class="chisme-content">
+            {{ message.content }}
         </div>
-        {% else %}
-        <div class="no-results">
-            <p>No talks found matching your criteria. Try a different search.</p>
-        </div>
-        {% endfor %}
     </div>
-</section>
-
+    {% else %}
+    <div class="center m-t-20">
+        <p style="color: var(--text-dim);">No hay chismes todavía... ¡Sé el primero!</p>
+    </div>
+    {% endfor %}
+</div>
 {% endblock %}
