@@ -43,3 +43,4 @@ Una plataforma social moderna y minimalista inspirada en los clásicos chismógr
 ---
 Hecho con ❤️ por Antigravity
 
+"# chismografo" 
