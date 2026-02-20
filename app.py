@@ -8,7 +8,19 @@ import os
 app = Flask(__name__)
 # Configuración
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'chismografo-secreto-super-seguro')
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///chismes.db'
+
+# Configurar base de datos para Vercel (Postgres o SQLite en /tmp)
+if os.environ.get('VERCEL'):
+    # Priorizar Vercel Postgres si está configurado
+    if os.environ.get('POSTGRES_URL'):
+        app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('POSTGRES_URL').replace('postgres://', 'postgresql://')
+    else:
+        # Fallback a SQLite en /tmp (temporal por sesión)
+        app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/chismes.db'
+else:
+    # Local
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///chismes.db'
+
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 # Inicializar extensiones
